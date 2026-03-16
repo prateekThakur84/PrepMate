@@ -60,7 +60,6 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 async function generatePdfFromHtml(htmlContent) {
 
     const browser = await puppeteer.launch({
-        executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"]
     })
