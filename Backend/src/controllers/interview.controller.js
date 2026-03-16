@@ -69,9 +69,6 @@ async function getAllInterviewReportsController(req, res) {
 }
 
 
-/**
- * @description Controller to generate resume PDF based on user self description, resume and job description.
- */
 async function generateResumePdfController(req, res) {
     const { interviewReportId } = req.params;
 
@@ -83,18 +80,19 @@ async function generateResumePdfController(req, res) {
 
     const { resume, jobDescription, selfDescription } = interviewReport;
 
-    // Assuming this returns a valid Buffer
+    // Generate the PDF Buffer
     const pdfBuffer = await generateResumePdf({ resume, jobDescription, selfDescription });
 
-    res.set({
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="resume_${interviewReportId}.pdf"`,
-        "Content-Length": pdfBuffer.length, // Helps the browser know the file size
-        "Access-Control-Expose-Headers": "Content-Disposition" // CRITICAL for hosted CORS
-    });
+    // Ensure it is actually a Node Buffer (crucial if your AI service returns base64)
+    const finalBuffer = Buffer.isBuffer(pdfBuffer) ? pdfBuffer : Buffer.from(pdfBuffer, 'base64');
 
-    // Use .end() with 'binary' encoding instead of .send()
-    res.end(pdfBuffer, 'binary'); 
+    // Set headers
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="resume_${interviewReportId}.pdf"`);
+    res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+
+    // Let Express handle the Buffer transmission safely
+    return res.send(finalBuffer); 
 }
 
 module.exports = { generateInterViewReportController, getInterviewReportByIdController, getAllInterviewReportsController, generateResumePdfController }

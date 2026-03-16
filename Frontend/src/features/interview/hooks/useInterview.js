@@ -59,14 +59,14 @@ export const useInterview = () => {
         return response.interviewReports
     }
 
- const getResumePdf = async (interviewReportId) => {
+const getResumePdf = async (interviewReportId) => {
     setLoading(true);
     try {
-        const response = await generateResumePdf({ interviewReportId });
+        // 'blobData' is ALREADY a Blob because of responseType: "blob" in Axios
+        const blobData = await generateResumePdf({ interviewReportId });
         
-        // response is ALREADY a Blob from Axios, just pass it directly
-        const blob = new Blob([response], { type: "application/pdf" });
-        const url = window.URL.createObjectURL(blob);
+        // Remove the 'new Blob()' wrapper! Just pass the data directly to createObjectURL
+        const url = window.URL.createObjectURL(blobData);
         
         const link = document.createElement("a");
         link.href = url;
@@ -75,13 +75,12 @@ export const useInterview = () => {
         document.body.appendChild(link);
         link.click();
         
-        // Clean up the DOM and memory
+        // Clean up
         link.parentNode.removeChild(link);
         window.URL.revokeObjectURL(url);
         
     } catch (error) {
         console.error("Failed to download PDF:", error);
-        // Tip: Add a toast notification here so the user knows it failed!
     } finally {
         setLoading(false);
     }
