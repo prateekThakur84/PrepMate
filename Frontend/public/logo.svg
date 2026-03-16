@@ -1,43 +1,19 @@
-import React from 'react';
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="prepAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff2d78" />
+            <stop offset="100%" stop-color="#d20d3b" />
+        </linearGradient>
+    </defs>
 
-const Logo = ({ size = 32, className = "" }) => {
-    return (
-        <svg 
-            width={size} 
-            height={size} 
-            viewBox="0 0 48 48" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className={className}
-        >
-            {/* Left Bracket: < */}
-            <path 
-                d="M 15 14 L 5 24 L 15 34" 
-                stroke="var(--text-main, whitesmoke)" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-            />
-            
-            {/* Right Bracket: > */}
-            <path 
-                d="M 33 14 L 43 24 L 33 34" 
-                stroke="var(--text-main, whitesmoke)" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-            />
-            
-            {/* Success Checkmark: ✓ */}
-            <path 
-                d="M 16 25 L 22 31 L 32 15" 
-                stroke="var(--accent-color, #d20d3b)" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-            />
-        </svg>
-    );
-};
-
-export default Logo;
+    <rect x="10" y="8" width="8" height="32" rx="4" fill="whitesmoke" />
+    
+    <path 
+        d="M 14 12 H 28 C 33.523 12 38 16.477 38 22 C 38 27.523 33.523 32 28 32 H 14" 
+        fill="none" 
+        stroke="url(#prepAccent)" 
+        stroke-width="8" 
+    />
+    
+    <circle cx="26" cy="22" r="2.5" fill="whitesmoke" />
+</svg>
