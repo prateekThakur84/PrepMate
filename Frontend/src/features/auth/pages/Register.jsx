@@ -15,7 +15,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await handleRegister({ username, email, password });
-        navigate("/login"); // Direct to login after successful registration
+        navigate("/home"); // Direct to home after successful registration
     };
 
     // Presentation Layer: Loading UI
