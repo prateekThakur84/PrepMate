@@ -59,25 +59,33 @@ export const useInterview = () => {
         return response.interviewReports
     }
 
-    const getResumePdf = async (interviewReportId) => {
-        setLoading(true)
-        let response = null
-        try {
-            response = await generateResumePdf({ interviewReportId })
-            const url = window.URL.createObjectURL(new Blob([ response ], { type: "application/pdf" }))
-            const link = document.createElement("a")
-            link.href = url
-            link.setAttribute("download", `resume_${interviewReportId}.pdf`)
-            document.body.appendChild(link)
-            link.click()
-        }
-        catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false)
-        }
+ const getResumePdf = async (interviewReportId) => {
+    setLoading(true);
+    try {
+        const response = await generateResumePdf({ interviewReportId });
+        
+        // response is ALREADY a Blob from Axios, just pass it directly
+        const blob = new Blob([response], { type: "application/pdf" });
+        const url = window.URL.createObjectURL(blob);
+        
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `resume_${interviewReportId}.pdf`);
+        
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up the DOM and memory
+        link.parentNode.removeChild(link);
+        window.URL.revokeObjectURL(url);
+        
+    } catch (error) {
+        console.error("Failed to download PDF:", error);
+        // Tip: Add a toast notification here so the user knows it failed!
+    } finally {
+        setLoading(false);
     }
-
+};
     useEffect(() => {
         if (interviewId) {
             getReportById(interviewId)
