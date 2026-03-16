@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Auth Pages Layout (Login & Register)
+   ========================================================================== */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary, #161616);
+    color: var(--text-main, whitesmoke);
+    padding: 2rem 1rem;
+    font-family: var(--font-stack, system-ui, sans-serif);
+}
+
+/* --- Brand Header --- */
+.auth-brand {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    letter-spacing: -0.5px;
+    color: var(--text-main, whitesmoke);
+    text-decoration: none;
+}
+
+/* --- Auth Card (The Form Container) --- */
+.auth-card {
+    background-color: var(--bg-secondary, #222222);
+    border: 1px solid var(--border-color, #333333);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.auth-card__header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.auth-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.auth-card__subtitle {
+    color: var(--text-muted, #a0a0a0);
+    font-size: 0.9rem;
+}
+
+/* --- Form Groups & Inputs --- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.auth-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.auth-form__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main, whitesmoke);
+}
+
+.auth-form__input {
+    background-color: var(--bg-primary, #161616);
+    border: 1px solid var(--border-color, #333333);
+    color: var(--text-main, whitesmoke);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color var(--transition-fast, 0.2s), box-shadow var(--transition-fast, 0.2s);
+    outline: none;
+}
+
+.auth-form__input::placeholder {
+    color: var(--text-muted, #a0a0a0);
+}
+
+.auth-form__input:focus {
+    border-color: var(--accent-color, #d20d3b);
+    box-shadow: 0 0 0 2px rgba(210, 13, 59, 0.2);
+}
+
+/* --- Submit Button --- */
+.auth-form__submit {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+}
+
+/* --- Footer Links --- */
+.auth-card__footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted, #a0a0a0);
+}
+
+.auth-link {
+    color: var(--accent-color, #d20d3b);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-fast, 0.2s);
+}
+
+.auth-link:hover {
+    color: var(--accent-hover, #b00b32);
+    text-decoration: underline;
+}
+
+/* --- Loading State --- */
+.auth-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted, #a0a0a0);
+}

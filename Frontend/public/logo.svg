@@ -1,0 +1,43 @@
+import React from 'react';
+
+const Logo = ({ size = 32, className = "" }) => {
+    return (
+        <svg 
+            width={size} 
+            height={size} 
+            viewBox="0 0 48 48" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            {/* Left Bracket: < */}
+            <path 
+                d="M 15 14 L 5 24 L 15 34" 
+                stroke="var(--text-main, whitesmoke)" 
+                strokeWidth="4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+            />
+            
+            {/* Right Bracket: > */}
+            <path 
+                d="M 33 14 L 43 24 L 33 34" 
+                stroke="var(--text-main, whitesmoke)" 
+                strokeWidth="4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+            />
+            
+            {/* Success Checkmark: ✓ */}
+            <path 
+                d="M 16 25 L 22 31 L 32 15" 
+                stroke="var(--accent-color, #d20d3b)" 
+                strokeWidth="4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+            />
+        </svg>
+    );
+};
+
+export default Logo;
